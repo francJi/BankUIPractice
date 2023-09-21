@@ -9,4 +9,11 @@ public class Define : MonoBehaviour
         Unknown,
         MainScene,
     }
+    public enum UIEvent
+    {
+        Click,
+        Pressed,
+        PointerDown,
+        PointerUp,
+    }
 }

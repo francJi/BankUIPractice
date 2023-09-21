@@ -49,6 +49,7 @@ public class UI_Base : MonoBehaviour
     }
 
     protected void BindObject(Type type) { Bind<GameObject>(type); }
+    protected void BindPanel(Type type) { Bind<GameObject>(type); }
     protected void BindImage(Type type) { Bind<Image>(type); }
     protected void BindText(Type type) { Bind<TextMeshProUGUI>(type); }
     protected void BindButton(Type type) { Bind<Button>(type); }
@@ -84,4 +85,30 @@ public class UI_Base : MonoBehaviour
     { 
         return Get<Image>(idx); 
     }
+
+    public static void BindEvent(GameObject obj, Action action, Define.UIEvent type = Define.UIEvent.Click)
+    {
+        UI_EventHandler evt = Utils.GetOrAddComponent<UI_EventHandler>(obj);
+
+        switch (type)
+        {
+            case Define.UIEvent.Click:
+                evt.OnClickHandler -= action;
+                evt.OnClickHandler += action;
+                break;
+            case Define.UIEvent.Pressed:
+                evt.OnPressedHandler -= action;
+                evt.OnPressedHandler += action;
+                break;
+            case Define.UIEvent.PointerDown:
+                evt.OnPointerDownHandler -= action;
+                evt.OnPointerDownHandler += action;
+                break;
+            case Define.UIEvent.PointerUp:
+                evt.OnPointerUpHandler -= action;
+                evt.OnPointerUpHandler += action;
+                break;
+        }
+    }
 }
+
