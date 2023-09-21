@@ -73,6 +73,7 @@ public class UIManager : MonoBehaviour
         if (parent != null)
         {
             obj.transform.SetParent(parent);
+            obj.GetComponent<RectTransform>().position = parent.GetComponent<RectTransform>().position;
         }
         else if (SceneUI != null)
         {
@@ -84,7 +85,8 @@ public class UIManager : MonoBehaviour
         }
 
         obj.transform.localScale = Vector3.one;
-        obj.transform.localPosition = prefab.transform.position;
+        obj.transform.position = prefab.transform.position;
+        Destroy(prefab);
 
         return popup;
     }
@@ -111,4 +113,30 @@ public class UIManager : MonoBehaviour
 
         return Utils.GetOrAddComponent<T>(obj);
     }
+
+    public void ClosePopupUI(UI_Popup popup)
+    {
+        if (_popupStack.Count == 0)
+            return;
+
+        if (_popupStack.Peek() != popup)
+        {
+            Debug.Log("Close Popup Failed!");
+            return;
+        }
+
+        ClosePopupUI();
+    }
+
+    public void ClosePopupUI()
+    {
+        if (_popupStack.Count == 0)
+            return;
+
+        UI_Popup popup = _popupStack.Pop();
+        Destroy(popup.gameObject);
+        popup = null;
+        _order--;
+    }
+
 }
