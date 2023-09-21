@@ -12,7 +12,7 @@ public class UI_Base : MonoBehaviour
 
     protected bool _init = false;
 
-    public virtual bool Init()
+    protected virtual bool Init()
     {
         if (_init)
         {
@@ -71,6 +71,10 @@ public class UI_Base : MonoBehaviour
     protected Text GetText(int idx) 
     { 
         return Get<Text>(idx); 
+    }
+    protected TextMeshProUGUI GetTextMesh(int idx)
+    {
+        return Get<TextMeshProUGUI>(idx);
     }
     protected Button GetButton(int idx) 
     { 

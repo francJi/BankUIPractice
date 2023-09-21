@@ -12,7 +12,7 @@ public class UI_Popup : UI_Base
             UIinstance = UIManager.UIinstance;
         }
     }
-    public override bool Init()
+    protected override bool Init()
     {
         if (base.Init() == false)
         {

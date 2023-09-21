@@ -48,8 +48,8 @@ public class UIManager : MonoBehaviour
         {
             name = typeof(T).Name;
         }
-
-        GameObject obj = Instantiate(Resources.Load<GameObject>($"UI/Scene/{name}"));
+        Debug.Log(name); //
+        GameObject obj = Instantiate(Resources.Load<GameObject>($"Prefabs/Scene/{name}"));
         T sceneUI = Utils.GetOrAddComponent<T>(obj);
         SceneUI = sceneUI;
 
@@ -65,8 +65,8 @@ public class UIManager : MonoBehaviour
             name = typeof(T).Name;
         }
 
-        GameObject prefab = Instantiate(Resources.Load<GameObject>($"Prefabs/UI/Popup/{name}"));
-        GameObject obj = Instantiate(Resources.Load<GameObject>($"UI/Popup/{name}"));
+        GameObject prefab = Instantiate(Resources.Load<GameObject>($"Prefabs/Popup/{name}"));
+        GameObject obj = Instantiate(Resources.Load<GameObject>($"Prefabs/Popup/{name}"));
         T popup = Utils.GetOrAddComponent<T>(obj);
         _popupStack.Push(popup);
 

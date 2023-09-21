@@ -6,6 +6,7 @@ public class Define : MonoBehaviour
 {
     public enum Scene
     {
+        Unknown,
         MainScene,
     }
 }

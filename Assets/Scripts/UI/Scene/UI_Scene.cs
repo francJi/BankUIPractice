@@ -6,7 +6,7 @@ public class UI_Scene : UI_Base
 {
     UIManager UIinstance;
 
-    public override bool Init()
+    protected override bool Init()
     {
         if (base.Init() == false)
         {
