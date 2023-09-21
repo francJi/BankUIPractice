@@ -55,4 +55,14 @@ public class Utils : MonoBehaviour
 
         return transform.gameObject;
     }
+
+    public static T GetOrAddComponent<T>(GameObject obj) where T : UnityEngine.Component
+    {
+        T component = obj.GetComponent<T>();
+        if (component == null)
+        {
+            component = obj.AddComponent<T>();
+        }
+        return component;
+    }
 }
