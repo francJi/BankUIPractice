@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_Popup : MonoBehaviour
+public class UI_Popup : UI_Base
 {
-    // Start is called before the first frame update
-    void Start()
+    UIManager UIinstance;
+    private void Awake()
     {
-        
+        if (UIinstance == null)
+        {
+            UIinstance = UIManager.UIinstance;
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    public override bool Init()
     {
-        
+        if (base.Init() == false)
+        {
+            return false;
+        }
+
+        UIinstance.SetCanvas(gameObject, true);
+        RectTransform _rectTransform = gameObject.GetComponent<RectTransform>();
+        _rectTransform = transform as RectTransform;
+
+        return true;
     }
 }
