@@ -10,6 +10,16 @@ public class UI_Base : MonoBehaviour
 {
     protected Dictionary<Type, UnityEngine.Object[]> _objectsDict = new Dictionary<Type, UnityEngine.Object[]>();
 
+    protected bool _init = false;
+
+    public virtual bool Init()
+    {
+        if (_init)
+        {
+            return false;
+        }
+        return _init = true;
+    }
     // 각 type의 이름에 해당하는 enum 클래스에 오브젝트들의 이름을 정의.
     // 이를 기준으로, _objectsDict 의 value에 key(해당 type)를 가진 오브젝트들을 저장.
     protected void Bind<T>(Type type) where T : UnityEngine.Object
@@ -70,6 +80,4 @@ public class UI_Base : MonoBehaviour
     { 
         return Get<Image>(idx); 
     }
-
-
 }
