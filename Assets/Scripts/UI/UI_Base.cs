@@ -34,7 +34,7 @@ public class UI_Base : MonoBehaviour
         {
             if (typeof(T) == typeof(GameObject))
             {
-                objs[i] = Utils.FindChild<T>(gameObject, names[i], true);
+                objs[i] = Utils.FindChild(gameObject, names[i], true);
             }
            else
             {
@@ -89,26 +89,7 @@ public class UI_Base : MonoBehaviour
     public static void BindEvent(GameObject obj, Action action, Define.UIEvent type = Define.UIEvent.Click)
     {
         UI_EventHandler evt = Utils.GetOrAddComponent<UI_EventHandler>(obj);
-
-        switch (type)
-        {
-            case Define.UIEvent.Click:
-                evt.OnClickHandler -= action;
-                evt.OnClickHandler += action;
-                break;
-            case Define.UIEvent.Pressed:
-                evt.OnPressedHandler -= action;
-                evt.OnPressedHandler += action;
-                break;
-            case Define.UIEvent.PointerDown:
-                evt.OnPointerDownHandler -= action;
-                evt.OnPointerDownHandler += action;
-                break;
-            case Define.UIEvent.PointerUp:
-                evt.OnPointerUpHandler -= action;
-                evt.OnPointerUpHandler += action;
-                break;
-        }
+        evt.OnClickHandler += action;
     }
 }
 

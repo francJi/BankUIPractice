@@ -9,15 +9,20 @@ public class UI_DepositPopup : UI_Popup
     private int amount;
     enum Buttons
     {
-        //Deposit10000Button,
-        //Deposit30000Button,
-        //Deposit50000Button,
-        //DepositButton,
+        Deposit10000Button,
+        Deposit30000Button,
+        Deposit50000Button,
+        DepositButton,
         BackButton,
     }
     enum GameObjects
     {
         DepositInputField,
+    }
+
+    private void Start()
+    {
+        Init();
     }
     protected override bool Init()
     {
@@ -27,7 +32,7 @@ public class UI_DepositPopup : UI_Popup
         }
         //TODO
         BindButton(typeof(Buttons));
-        BindButton(typeof(GameObjects));
+        BindObject(typeof(GameObjects));
 
         //_parentObject = GetButton((int)Buttons.DepositMenuButton).gameObject.transform.parent.gameObject;
         //GetButton((int)Buttons.Deposit10000Button).gameObject.BindEvent((() => OnClickedDepositButton(10000)));
@@ -37,11 +42,12 @@ public class UI_DepositPopup : UI_Popup
         //GetObject((int)GameObjects.DepositInputField).GetComponentInChildren<TMP_InputField>().text = amount.ToString(); // GameManager와 연동시켜야함.
         //GetButton((int)Buttons.DepositButton).gameObject.BindEvent(() => OnClickedDepositButton(amount));
 
-        GetButton((int)Buttons.BackButton).gameObject.BindEvent(() => { OnClickedBackButton(); });
+        GetButton((int)Buttons.Deposit10000Button).gameObject.BindEvent(() => { OnClickedDepositButton(10000); });
+        GetButton((int)Buttons.BackButton).gameObject.BindEvent(OnClickedBackButton);
         return true;
     }
 
-    private void OnClickedBackButton()
+    void OnClickedBackButton()
     {
         Debug.Log("Close");
         //UIManager.UIinstance.ClosePopupUI(this);

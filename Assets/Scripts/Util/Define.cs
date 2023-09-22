@@ -12,8 +12,5 @@ public class Define : MonoBehaviour
     public enum UIEvent
     {
         Click,
-        Pressed,
-        PointerDown,
-        PointerUp,
     }
 }

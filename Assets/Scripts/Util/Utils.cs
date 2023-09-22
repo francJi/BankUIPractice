@@ -24,7 +24,7 @@ public class Utils : MonoBehaviour
                     T component = transform.GetComponent<T>();
                     if (component != null)
                     {
-                        return component;
+                        return transform.GetComponent<T>();
                     }
                 }
             }
